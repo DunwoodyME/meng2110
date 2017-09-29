@@ -11,7 +11,7 @@ def eval_loop():
         text = input('  Enter a Python command: ')
         if text == 'done':
             break
-        print(text)
+        print('  Calling eval(', text, ')')
         print(eval(text))
 
 eval_loop()
