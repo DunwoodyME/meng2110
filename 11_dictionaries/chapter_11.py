@@ -13,4 +13,9 @@ def histogram(s):
         d[c] = d.get(c,0) + 1
     return d
 
-print(histogram('onomatopia')) aα 
+def display_histogram(d):
+    for letter in sorted(d):
+        print(letter, '▇'*d[letter])
+    
+text = 'Just some random text to get us started'
+display_histogram(histogram(text)) 
