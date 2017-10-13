@@ -18,6 +18,7 @@ def display_histogram(d):
     ''' Displays the histogram contained in dictionary d '''
     for key in d:
         print(key,d[key]*'▇')
+        
 
 text = 'sippity sip on the mississippi'
 text_dict = histogram(text)

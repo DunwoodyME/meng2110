@@ -36,6 +36,7 @@ def add_sighting(d, birdname, number):
     d[birdname] = d.get(birdname,0) + number
 
 birds = get_data('bird_data.csv')
-#print(invert_dict(birds))
 add_sighting(birds, 'Wild Turkey', 6)
 top_n(birds, 10)
+inverted = invert_dict(birds)
+print(inverted[4])
