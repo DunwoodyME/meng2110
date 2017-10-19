@@ -49,7 +49,8 @@ def dict_wordcount(filename):
     t0 = time.clock()
     for line in fin:
         for word in line.strip().lower().split():
-            if not re.search('[\W\d_]',word):
+            #if not re.search('[\W\d_]',word):
+            if word.isalpha():
                 counter += 1
                 #word = re.sub('[\W_]+', '', word)
                 wordlist[word] = wordlist.get(word,0) + 1
@@ -65,9 +66,9 @@ def dict_wordcount(filename):
 
 
 #filename = '../09_wordplay/gadsby.txt'
-list_wordcount('decline_and_fall.txt')
+list_wordcount('old_man.txt')
 #dict_wordcount(filename)
 #dict_wordcount('hamlet.txt')
-#dict_wordcount('old_man.txt')
+dict_wordcount('old_man.txt')
 #dict_wordcount('paradise_lost.txt')
-dict_wordcount('decline_and_fall.txt')
+#dict_wordcount('decline_and_fall.txt')

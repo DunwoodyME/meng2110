@@ -14,8 +14,9 @@ def load_materials(filename):
     fin = open(filename)
     h = fin.readline().strip().split(',')
     for line in fin:
-        v = line.strip().split(',')
-        materials[v[0]] = {h[i]:v[i] for i in [1,2,3,4]}
+        p_list = line.strip().split(',')
+        materials[p_list[0]] = {k:v for k,v in zip(h[1:],p_list[1:])}
+        #materials[p_list[0]] = {h[i]:p_list[i] for i in [1,2,3,4]}
     return materials
 
 def add_material(d, name, mtype, rho, E, sigma_ut):
