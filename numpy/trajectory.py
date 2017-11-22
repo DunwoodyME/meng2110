@@ -24,6 +24,7 @@ def plot_trajectory(x_max, theta, v_0):
     dx = x_max/50
     x = np.arange(0,x_max+dx/2,dx)
     y = f_x(x, theta, v_0)
+    plt.figure(figsize = (15,2))
     plt.plot(x,y)
     plt.show()
 
