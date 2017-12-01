@@ -23,18 +23,24 @@ def letter_grade(score):
     ''' Converts a numeric score to a letter grade 
         score: float representing percentage out of 100
         returns: String with letter grade '''
-    if 0 < score < 60: 
-        return 'F'
-    elif score < 70:
-        return 'D'
-    elif score < 80:
-        return 'C'
-    elif score < 90:
-        return 'B'
-    elif score <= 100:
-        return 'A'
-    else: 
-        return 'Error: score out of range'
+#    if 0 < score < 60: 
+#        return 'F'
+#    elif score < 70:
+#        return 'D'
+#    elif score < 80:
+#        return 'C'
+#    elif score < 90:
+#        return 'B'
+#    elif score <= 100:
+#        return 'A'
+#    else: 
+#        return 'Error: score out of range'
+        
+    grading_scale = [[0,60,'F'],[60,70,'D'],[70,80,'C'],[80,90,'B'],[90,100,'A'],]
+    for bracket in grading_scale:
+        if bracket[0] <= score < bracket[1]:
+            return bracket[2]
+    
 
 def convert_list(scores):
     ''' Converts a list of scores to a list of grades.
@@ -61,7 +67,7 @@ def plot_grades(grades):
     frequency = []
     for letter in letters:
         frequency.append(grades.count(letter))
-    y_pos = range(len(label))
+    y_pos = range(len(letters))
     plt.bar(y_pos, frequency)
     plt.xticks(y_pos, letters)
     plt.title('Class grade distribution') 
