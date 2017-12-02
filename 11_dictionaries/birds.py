@@ -35,8 +35,12 @@ def add_sighting(d, birdname, number):
     ''' Add a sighting to the birdlist dictionary '''
     d[birdname] = d.get(birdname,0) + number
 
+def print_name():
+    print(__name__)
+
 birds = get_data('bird_data.csv')
 add_sighting(birds, 'Wild Turkey', 6)
 top_n(birds, 10)
 inverted = invert_dict(birds)
 print(inverted[4])
+print(__name__)

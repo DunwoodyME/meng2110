@@ -8,7 +8,7 @@ trajectory.py
 
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy
+from scipy.optimize import root
 
 def f_x(x, theta, v_0, y_0 = 0):
     ''' Calculates the height (y position) of a ball's trajectory
@@ -25,6 +25,7 @@ def plot_trajectory(x_max, theta, v_0):
     x = np.arange(0,x_max+dx/2,dx)
     y = f_x(x, theta, v_0)
     plt.plot(x,y)
+    plt.xlabel('Distance [m]')
     plt.show()
 
 def ball_range(theta, v_0, y_0 = 0, x_max = 100):
@@ -47,7 +48,7 @@ def optimum_theta(v_0, y_0 = 0):
     x_opt = 0
     t_opt = 0
     for t_i in np.arange(t_min, t_max, (t_max-t_min)/50):
-        sol   = scipy.optimize.root(f_x, 20, (t_i, v_0))
+        sol   = root(f_x, 100, (t_i, v_0))
         x_i = sol.x[0]
         print('  At theta = {0:.1f}, x = {1:.2f} m'.format(np.degrees(t_i),x_i))
         if x_i > x_opt: 
@@ -58,10 +59,12 @@ def optimum_theta(v_0, y_0 = 0):
 
 if __name__ == "__main__":
     theta = np.radians(30)
-    v_0   = 15  # [m/s]
-    x_max = ball_range(theta, 15)
-    sol = scipy.optimize.root(f_x, 10, (theta,v_0))
-    print(sol.x[0], x_max)
+    v_0   = 90/2.236936  # [m/s]
+    #x_max = ball_range(theta, 100)
+    sol = root(f_x, 100, (theta,v_0))
+    x_max = sol.x[0]
+    #print(sol.x[0], x_max)
     plot_trajectory(sol.x[0], theta, v_0)
     print('\n  Optimum theta = {0:.2f}'.format(np.degrees(optimum_theta(v_0))))
+    print('  Range = {0:0.2f} m = {1:0.2f} ft'.format(x_max, x_max*3.28084))
 
