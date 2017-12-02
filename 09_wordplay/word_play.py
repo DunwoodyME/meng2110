@@ -21,6 +21,18 @@ def has_no_e(word):
             return False
     return True
 
+def has_letter(word, letter):
+    for c in word:
+        if c == letter:
+            return True
+    return False
+
+def has_letters(word, letter, minimum=6):
+    ''' Returns True if word has at least the minimum occurances of letter. '''
+    if word.count(letter) >= minimum:
+        return True
+    return False
+
 def print_no_e(file):
     ''' Prints words that don't contain the letter e
         Returns the percentage of words that don't have e '''
@@ -56,14 +68,14 @@ def uses_all(word, required):
 #            return False
 #    return True
 
-def is_abecedarian(w, unused):
+def is_abecedarian(w, unused=None):
     ''' Returns True if letters in word appear in alphabetical order '''
     for i in range(len(word)-2):
         if w[i] > w[i+1]:
             return False
     return True
 
-def puzzler1(w, unused):
+def puzzler1(w, unused=None):
     ''' Returns True if letters in word appear in alphabetical order '''
     if len(w) >= 6:
         for i in range(len(w)-5):
@@ -72,7 +84,9 @@ def puzzler1(w, unused):
     return False
 
 def is_length(w, n):
-    if len(w) == n
+    if len(w) == n:
+        return True
+    return False
 
 def check_file(file, f, arg):
     ''' Runs f(line, arg) on each line of text file. '''
@@ -81,7 +95,7 @@ def check_file(file, f, arg):
     for line in fin:
         word = line.strip()
         if f(word, arg):
-            print(word)
+            print(word,'\n')
             n += 1
     return n
 
@@ -91,5 +105,6 @@ filename = 'words.txt'
 #print(check_file(filename, uses_all, 'aeiouy'))
 #print(is_abecedarian('abcdefa',2))
 #print(check_file(filename, is_abecedarian, 'aeiouy'))
-print(check_file(filename, puzzler1, 2))
-
+#print(check_file(filename, puzzler1, 2))
+#print(check_file(filename, has_letters, 'e'))
+print(check_file('gadsby.txt', has_letter, 'e'))
